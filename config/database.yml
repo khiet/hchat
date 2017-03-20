@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: hchat_production
-  username: hchat
-  password: <%= ENV['HCHAT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

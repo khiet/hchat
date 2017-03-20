@@ -1,0 +1,30 @@
+%section
+  .row
+    .columns.medium-9.medium-centered.large-6.large-centered
+      .js-joined-notification.joined-notification.callout.success.hide
+      .js-left-notification.left-notification.callout.alert.hide
+
+  .row
+    .columns.medium-9.medium-centered.large-6.large-centered
+      .room-id
+        = "Room ID: #{@room.id}"
+      .user-id
+        = "User ID: #{current_user.id}"
+
+      .js-message-list.message-list
+        = render @messages
+
+      .message.rounded.js-typing.typing.hide
+        = fa_icon('ellipsis-h', class: 'fa-pulse')
+
+      .form-container
+        %form
+          .channel{ 'data-room-id' => @room.id, 'data-user-id' => current_user.id }
+
+          .input-group
+            %input.input-group-field.js-chat-text-area.chat-text-area{ type: "text" }
+            .input-group-button
+              %button.button.secondary.js-chat-submit-button.chat-submit-button
+                = fa_icon('commenting', text: '発信')
+
+      = link_to '新規チャット', root_path, class: 'button'

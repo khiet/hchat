@@ -1,0 +1,35 @@
+$color-beige: #f5f6f1
+
+body
+  background-color: $color-beige
+
+.logo
+  font-size: 2rem
+  font-weight: bold
+  color: $primary-color
+
+.padded
+  padding: 1rem 0
+
+.rounded
+  border-radius: 4px
+
+.message
+  background-color: lighten($primary-color, 40%)
+  border: 1px solid $primary-color
+  margin: 0.5rem 0
+  padding: 1rem
+  &.mine
+    background-color: lighten($secondary-color, 60%)
+    border: 1px solid $secondary-color
+
+.input-group-label
+  background-color: $secondary-color
+  .fa
+    color: $white
+
+.chat-text-area, .button.chat-submit-button
+  height: 5rem
+
+.form-container
+  margin: 1rem 0

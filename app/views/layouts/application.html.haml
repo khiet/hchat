@@ -1,0 +1,25 @@
+!!! 5
+%html{ lang: "en"}
+  %head
+    %meta{ charset: "utf-8" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    %meta{ name: "description", content: "hchat" }
+
+    %title= yield(:title).presence || 'hchat'
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+    = action_cable_meta_tag
+
+  %body
+    %header
+      .row
+        .columns.medium-9.medium-centered.large-6.large-centered
+          .logo.padded
+            HChat
+            = fa_icon('heartbeat')
+
+    .content-wrapper
+      = yield
+      .sticky-footer-push
