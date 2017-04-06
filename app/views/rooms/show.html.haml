@@ -19,7 +19,7 @@
 
       .form-container
         %form
-          .channel{ 'data-room-id' => @room.id, 'data-user-id' => current_user.id }
+          .channel{ 'data-room-id' => @room.id, 'data-current-user-id' => current_user.id }
 
           .input-group
             %input.input-group-field.js-chat-text-area.chat-text-area{ type: "text" }

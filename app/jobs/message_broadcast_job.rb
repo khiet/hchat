@@ -4,8 +4,9 @@ class MessageBroadcastJob < ApplicationJob
   def perform(message)
     ActionCable.server.broadcast(
       "room_channel_#{message.user_room.room_id}",
+      action: 'speak',
       message: render_message(message),
-      sender_id: message.user_room.user_id
+      sender_id: message.user_id
     )
   end
 

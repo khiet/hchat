@@ -4,47 +4,42 @@ $(function() {
   App.room = App.cable.subscriptions.create({ channel: "RoomChannel", room_id: roomId }, {
     connected: function() {
       console.log('connected');
-      return this.perform('joined', {
-        joiner_id: $('.channel').data('userId')
-      });
     },
     disconnected: function() {
       console.log('disconnected');
     },
     received: function(data) {
-      var userId = $('.channel').data('userId');
-      var $message = $(data['message']);
+      var currentUserId = $('.channel').data('currentUserId');
 
-      console.log(data);
-      if (data['joiner_id']) { /* joined */
-        var joinerId = data['joiner_id']
-        if (userId != joinerId) {
+      switch(data['action']) {
+        case 'speak':
+          var $message = $(data['message']);
+          if (currentUserId == data['sender_id']) {
+            /* mark if message is mine or not */
+            $message = $message.addClass('mine');
+          }
+          $('.js-message-list').append($message);
+          break;
+        case 'joined':
+          var joinerId = data['joiner_id']
           $('.js-left-notification').addClass('hide');
           $('.js-joined-notification').html(joinerId + ' has joined');
           $('.js-joined-notification').removeClass('hide');
-        }
-      } else if (data['leaver_id']) { /* left */
-        var leaverId = data['leaver_id']
-        if (userId != leaverId) {
+          break;
+        case 'left':
+          var leaverId = data['leaver_id']
           $('.js-joined-notification').addClass('hide');
           $('.js-left-notification').html(leaverId + ' has left');
           $('.js-left-notification').removeClass('hide');
-        }
-      } else if (data['typer_id']) { /* typing */
-        var typerId = data['typer_id']
-        if (userId != typerId) {
+          break;
+        case 'typing':
+          var typerId = data['typer_id']
           if (data['flag']) {
             $('.js-typing').removeClass('hide');
           } else {
             $('.js-typing').addClass('hide');
           }
-        }
-      } else { /* speak */
-          if (userId == data['sender_id']) {
-            $message = $message.addClass('mine');
-          }
-
-        $('.js-message-list').append($message);
+          break;
       }
     },
     speak: function(message) {
@@ -88,12 +83,9 @@ $(function() {
     var typedInput = $(e.currentTarget).val();
     var trimedInput = $.trim(typedInput);
 
-    var userId = $('.channel').data('userId');
+    var currentUserId = $('.channel').data('currentUserId');
 
-    if ((trimedInput.length > 0) && (trimedInput != ''))  {
-      App.room.typing(userId, true);
-    } else {
-      App.room.typing(userId, false);
-    }
+    var flag = ((trimedInput.length > 0) && (trimedInput != ''))
+    App.room.typing(currentUserId, flag);
   });
 });
