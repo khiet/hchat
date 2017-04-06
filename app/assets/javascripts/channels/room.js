@@ -21,19 +21,19 @@ $(function() {
           $('.js-message-list').append($message);
           break;
         case 'joined':
-          var joinerId = data['joiner_id']
+          var joinerId = data['joinerId']
           $('.js-left-notification').addClass('hide');
           $('.js-joined-notification').html(joinerId + ' has joined');
           $('.js-joined-notification').removeClass('hide');
           break;
         case 'left':
-          var leaverId = data['leaver_id']
+          var leaverId = data['leaverId']
           $('.js-joined-notification').addClass('hide');
           $('.js-left-notification').html(leaverId + ' has left');
           $('.js-left-notification').removeClass('hide');
           break;
         case 'typing':
-          var typerId = data['typer_id']
+          var typerId = data['typerId']
           if (data['flag']) {
             $('.js-typing').removeClass('hide');
           } else {
@@ -49,7 +49,7 @@ $(function() {
     },
     typing: function(typerId, flag) {
       return this.perform('typing', {
-        typer_id: typerId,
+        typerId: typerId,
         flag: flag
       });
     }

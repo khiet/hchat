@@ -7,7 +7,7 @@ class RoomChannel < ApplicationCable::Channel
       ActionCable.server.broadcast(
         "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
         action: 'joined',
-        joiner_id: browser_user.id
+        joinerId: browser_user.id
       )
     end
   end
@@ -18,7 +18,7 @@ class RoomChannel < ApplicationCable::Channel
     ActionCable.server.broadcast(
       "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
       action: 'left',
-      leaver_id: browser_user.id
+      leaverId: browser_user.id
     )
   end
 
@@ -32,7 +32,7 @@ class RoomChannel < ApplicationCable::Channel
     ActionCable.server.broadcast(
       "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
       action: 'typing',
-      typer_id: data['typer_id'],
+      typerId: data['typerId'],
       flag: data['flag']
     )
   end
