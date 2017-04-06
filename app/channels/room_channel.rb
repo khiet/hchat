@@ -7,7 +7,7 @@ class RoomChannel < ApplicationCable::Channel
       ActionCable.server.broadcast(
         "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
         action: 'joined',
-        joinerId: browser_user.id
+        joinerName: browser_user.name
       )
     end
   end
@@ -17,7 +17,7 @@ class RoomChannel < ApplicationCable::Channel
       ActionCable.server.broadcast(
         "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
         action: 'left',
-        leaverId: browser_user.id
+        leaverName: browser_user.name
       )
     else
       room.update(available: false)

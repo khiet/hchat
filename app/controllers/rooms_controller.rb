@@ -3,13 +3,14 @@ class RoomsController < ApplicationController
     if available_room
       available_room.user_rooms.create(user: current_user)
       available_room.update(available: false)
+      partner = available_room.partner(current_user)
 
-      flash['notice'] = "joined a chat room: #{available_room.id}"
+      flash['notice'] = "チャットルームへ入室しました。あたたは<b>#{current_user.name}</b>で相手は<b>#{partner.name}さん</b>です。"
       redirect_to room_path(available_room)
     else
       room = create_room
 
-      flash['notice'] = "joined a chat room: #{room.id}"
+      flash['notice'] = "相手を待っています。あたたは<b>#{current_user.name}</b>です。"
       redirect_to room_path(room)
     end
   end

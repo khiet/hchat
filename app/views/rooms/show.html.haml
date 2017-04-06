@@ -7,7 +7,7 @@
       - if flash[:notice]
         .flash-notice-container
           .callout.warning.js-flash-notice.flash-notice
-            = flash[:notice]
+            = raw(flash[:notice])
 
   .row
     .columns.medium-9.medium-centered.large-6.large-centered

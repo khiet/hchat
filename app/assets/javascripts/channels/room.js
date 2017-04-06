@@ -21,16 +21,16 @@ $(function() {
           $('.js-message-list').append($message);
           break;
         case 'joined':
-          var joinerId = data['joinerId']
+          var joinerName = data['joinerName']
           $('.js-flash-notice').addClass('hide');
           $('.js-left-notification').addClass('hide');
-          $('.js-joined-notification').html(joinerId + ' has joined');
+          $('.js-joined-notification').html(joinerName + 'さんが入室しました。');
           $('.js-joined-notification').removeClass('hide');
           break;
         case 'left':
-          var leaverId = data['leaverId']
+          var leaverName = data['leaverName']
           $('.js-joined-notification').addClass('hide');
-          $('.js-left-notification').html(leaverId + ' has left');
+          $('.js-left-notification').html(leaverName + 'さんが退室しました。');
           $('.js-left-notification').removeClass('hide');
           break;
         case 'typing':

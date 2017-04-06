@@ -4,4 +4,8 @@ class Room < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+
+  def partner(querying_user)
+    user_rooms.find_by('user_id != ?', querying_user).user
+  end
 end
