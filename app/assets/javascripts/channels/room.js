@@ -22,6 +22,7 @@ $(function() {
           break;
         case 'joined':
           var joinerId = data['joinerId']
+          $('.js-flash-notice').addClass('hide');
           $('.js-left-notification').addClass('hide');
           $('.js-joined-notification').html(joinerId + ' has joined');
           $('.js-joined-notification').removeClass('hide');

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     unless User.exists?(id: cookies[:user_id])
-      user = User.create!
+      user = User.create!(name: Naming.names.sample)
 
       cookies[:user_id] = user.id
     end

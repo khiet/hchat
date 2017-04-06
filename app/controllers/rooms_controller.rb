@@ -4,10 +4,12 @@ class RoomsController < ApplicationController
       available_room.user_rooms.create(user: current_user)
       available_room.update(available: false)
 
+      flash['notice'] = "joined a chat room: #{available_room.id}"
       redirect_to room_path(available_room)
     else
       room = create_room
 
+      flash['notice'] = "joined a chat room: #{room.id}"
       redirect_to room_path(room)
     end
   end
@@ -16,7 +18,7 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.find_by(id: params[:id])
     redirect_to root_path and return unless @room
 
-    @messages = Message.where(user_room_id: @room.user_room_ids)
+    @messages = Message.where(user_room_id: @room.user_room_ids).order(created_at: :asc)
   end
 
   private

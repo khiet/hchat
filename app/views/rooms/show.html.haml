@@ -4,13 +4,13 @@
       .js-joined-notification.joined-notification.callout.success.hide
       .js-left-notification.left-notification.callout.alert.hide
 
+      - if flash[:notice]
+        .flash-notice-container
+          .callout.warning.js-flash-notice.flash-notice
+            = flash[:notice]
+
   .row
     .columns.medium-9.medium-centered.large-6.large-centered
-      .room-id
-        = "Room ID: #{@room.id}"
-      .user-id
-        = "User ID: #{current_user.id}"
-
       .js-message-list.message-list
         = render @messages
 
