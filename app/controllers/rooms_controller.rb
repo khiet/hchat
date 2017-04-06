@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   def index
     if available_room
       available_room.user_rooms.create(user: current_user)
-      available_room.update(active: true)
+      available_room.update(available: false)
 
       redirect_to room_path(available_room)
     else
@@ -14,13 +14,15 @@ class RoomsController < ApplicationController
 
   def show
     @room = current_user.rooms.find_by(id: params[:id])
+    redirect_to root_path and return unless @room
+
     @messages = Message.where(user_room_id: @room.user_room_ids)
   end
 
   private
 
   def available_room
-    @available_room ||= Room.joins(:user_rooms).where('user_rooms.user_id != ? AND rooms.active = ?', current_user, false).first
+    @available_room ||= Room.joins(:user_rooms).where('user_rooms.user_id != ? AND rooms.available = ?', current_user, true).first
   end
 
   def create_room
