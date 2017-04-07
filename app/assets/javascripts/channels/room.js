@@ -3,10 +3,8 @@ $(function() {
 
   App.room = App.cable.subscriptions.create({ channel: "RoomChannel", room_id: roomId }, {
     connected: function() {
-      console.log('connected');
     },
     disconnected: function() {
-      console.log('disconnected');
     },
     received: function(data) {
       var currentUserId = $('.channel').data('currentUserId');
