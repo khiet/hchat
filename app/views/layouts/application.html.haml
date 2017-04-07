@@ -17,7 +17,7 @@
       .row
         .columns.medium-9.medium-centered.large-6.large-centered
           .logo.padded
-            = fa_icon('heartbeat', text: raw(link_to('HChat', root_path)))
+            = link_to(fa_icon('heartbeat', text: 'HChat'), root_path)
 
     .content-wrapper
       = yield
