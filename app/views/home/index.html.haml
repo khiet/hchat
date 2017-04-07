@@ -10,7 +10,7 @@
       %p.subheading.text-small
         %span.text-primary
           「チャットを開始する」
-        をクリックすると,
+        をクリックすると、
         %br
         同じようにクリックした誰か一人との
         %br
@@ -22,3 +22,33 @@
 
       .start-chat-link-container
         = link_to fa_icon('commenting', text: 'チャットを開始する'), rooms_path, class: 'button large'
+
+      .service-explanation
+        .row
+          .columns.medium-6
+            .media-object
+              .media-object-section
+                = fa_icon('comments-o', class: 'icon large')
+              .media-object-section
+                %h5.heading.text-small
+                  誰かと話したい！そんなときに
+                %p.subheading.text-small
+                  暇なとき、さみしいとき、相談したいとき、
+                  %br
+                  HChatなら「チャットを開始する」ボタンを
+                  %br
+                  クリックするとすぐに話し相手が見つかるよ！
+
+          .columns.medium-6
+            .media-object
+              .media-object-section
+                = fa_icon('heart', class: 'icon large')
+              .media-object-section
+                %h5.heading.text-small
+                  見ず知らずの人と意気投合しちゃうかも!?
+                %p.subheading.text-small
+                  自分とは違う年代、性別、職業、地域、趣味の人
+                  %br
+                  など普段の生活では知り合わないような人と
+                  %br
+                  話せて盛り上がるかも！？
