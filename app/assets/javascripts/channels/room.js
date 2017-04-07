@@ -80,7 +80,7 @@ $(function() {
     return e.preventDefault();
   });
 
-  $('.js-chat-text-area').on('keyup', function(e) {
+  $('.js-chat-text-area').on('change keyup paste click', function(e) {
     var typedInput = $(e.currentTarget).val();
     var trimedInput = $.trim(typedInput);
 
