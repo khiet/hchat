@@ -12,7 +12,7 @@
   .row
     .columns.medium-9.medium-centered.large-6.large-centered
       .js-message-list.message-list
-        = render @messages
+        = render @messages, user: current_user
 
       .message.rounded.js-typing.typing.hide
         = fa_icon('ellipsis-h', class: 'fa-pulse')
@@ -27,4 +27,4 @@
               %button.button.secondary.js-chat-submit-button.chat-submit-button
                 = fa_icon('commenting', text: '発信')
 
-      = link_to '新規チャット', root_path, class: 'button'
+      = link_to '新規チャット', rooms_path, class: 'button'

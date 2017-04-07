@@ -1,2 +1,2 @@
-.message.rounded{ class: ('mine' if message.user_room.user == current_user) }
+.message.rounded{ class: ('mine' if (local_assigns[:user] == message.user_room.user)) }
   = message.content

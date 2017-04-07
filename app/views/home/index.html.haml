@@ -1,0 +1,24 @@
+%section
+  .row
+    .columns.medium-9.medium-centered.large-6.large-centered
+      %h2.heading.margin-vertical
+        見知らぬ誰かと
+        %br
+        チャットを楽しめる
+        %br
+        Webサービス。
+      %p.subheading.text-small
+        %span.text-primary
+          「チャットを開始する」
+        をクリックすると,
+        %br
+        同じようにクリックした誰か一人との
+        %br
+        チャットが開始します。
+        %br
+        チャットの内容は公開されません。
+        %br
+        見知らぬ誰かと何を話すかは皆さんの自由です。
+
+      .start-chat-link-container
+        = link_to fa_icon('commenting', text: 'チャットを開始する'), rooms_path, class: 'button large'

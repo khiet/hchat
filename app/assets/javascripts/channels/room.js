@@ -24,17 +24,16 @@ $(function() {
           var joinerName = data['joinerName']
           $('.js-flash-notice').addClass('hide');
           $('.js-left-notification').addClass('hide');
-          $('.js-joined-notification').html(joinerName + 'さんが入室しました。');
+          $('.js-joined-notification').html('<b>' + joinerName + '</b>さんが入室しました。');
           $('.js-joined-notification').removeClass('hide');
           break;
         case 'left':
           var leaverName = data['leaverName']
           $('.js-joined-notification').addClass('hide');
-          $('.js-left-notification').html(leaverName + 'さんが退室しました。');
+          $('.js-left-notification').html('<b>' + leaverName + '</b>さんが退室しました。');
           $('.js-left-notification').removeClass('hide');
           break;
         case 'typing':
-          var typerId = data['typerId']
           if (data['flag']) {
             $('.js-typing').removeClass('hide');
           } else {
@@ -48,9 +47,8 @@ $(function() {
         message: message
       });
     },
-    typing: function(typerId, flag) {
+    typing: function(flag) {
       return this.perform('typing', {
-        typerId: typerId,
         flag: flag
       });
     }
@@ -84,9 +82,7 @@ $(function() {
     var typedInput = $(e.currentTarget).val();
     var trimedInput = $.trim(typedInput);
 
-    var currentUserId = $('.channel').data('currentUserId');
-
     var flag = ((trimedInput.length > 0) && (trimedInput != ''))
-    App.room.typing(currentUserId, flag);
+    App.room.typing(flag);
   });
 });

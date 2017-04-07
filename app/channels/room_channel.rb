@@ -13,6 +13,8 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
+    return unless user_room
+
     if user_room.partner_id
       ActionCable.server.broadcast(
         "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
@@ -34,7 +36,6 @@ class RoomChannel < ApplicationCable::Channel
     ActionCable.server.broadcast(
       "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
       action: 'typing',
-      typerId: data['typerId'],
       flag: data['flag']
     )
   end
