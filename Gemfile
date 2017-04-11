@@ -54,3 +54,4 @@ gem "haml-rails", "~> 0.9"
 
 gem 'foundation-rails'
 gem "font-awesome-rails"
+gem "animate-rails"

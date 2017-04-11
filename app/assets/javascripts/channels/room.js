@@ -25,6 +25,7 @@ $(function() {
             $('.js-left-notification').addClass('hide');
             $('.js-joined-notification').html('<b>' + joinerName + '</b>さんが入室しました。');
             $('.js-joined-notification').removeClass('hide');
+            $('.js-logo').addClass('animated wobble');
             break;
           case 'left':
             var leaverName = data['leaverName']
