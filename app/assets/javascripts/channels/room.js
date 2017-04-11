@@ -34,6 +34,7 @@ $(function() {
             $('.js-left-notification').removeClass('hide');
             break;
           case 'typing':
+            console.log(data['flag']);
             if (data['flag']) {
               $('.js-typing').removeClass('hide');
             } else {
@@ -56,24 +57,18 @@ $(function() {
 
     $('.js-chat-text-area').on('keypress', function(e) {
       if (e.keyCode === 13) {
-        var $chatTextArea = $('.js-chat-text-area');
-        var trimedInput = $.trim($chatTextArea.val());
-        if (trimedInput.length > 0 && trimedInput != '') {
-          App.room.speak(trimedInput);
-        }
-        $chatTextArea.val('');
+        sendMessage();
 
         return e.preventDefault();
       }
     });
 
     $('.js-chat-submit-button').on('click', function(e) {
-      var $chatTextArea = $('.js-chat-text-area');
-      var trimedInput = $.trim($chatTextArea.val());
-      if (trimedInput.length > 0 && trimedInput != '') {
-        App.room.speak(trimedInput);
-      }
-      $chatTextArea.val('');
+      /* clear typing since click on submit does not trigger keyup event
+       * to trigger typing(false) unlike keypress on input
+       */
+      App.room.typing(false);
+      sendMessage();
 
       return e.preventDefault();
     });
@@ -85,5 +80,14 @@ $(function() {
       var flag = ((trimedInput.length > 0) && (trimedInput != ''))
       App.room.typing(flag);
     });
+
+    var sendMessage = function() {
+      var $chatTextArea = $('.js-chat-text-area');
+      var trimedInput = $.trim($chatTextArea.val());
+      if (trimedInput.length > 0 && trimedInput != '') {
+        App.room.speak(trimedInput);
+      }
+      $chatTextArea.val('');
+    };
   }
 });
