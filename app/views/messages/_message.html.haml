@@ -1,2 +1,6 @@
-.message.rounded{ class: ('mine' if (local_assigns[:user] == message.user_room.user)) }
-  = message.content
+:ruby
+  mine_or_not_mine = local_assigns[:user] && ((local_assigns[:user] == message.user_room.user) ? 'mine' : 'not-mine')
+
+.message{ class: mine_or_not_mine }
+  %span.body.rounded.message-tip
+    = message.content

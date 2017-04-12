@@ -14,8 +14,10 @@ $(function() {
           case 'speak':
             var $message = $(data['message']);
             if (currentUserId == data['sender_id']) {
-              $message = $message.addClass('mine'); // mark if message is mine or not
+              // mark if message is mine or not
+              $message = $message.addClass('mine');
             } else {
+              $message = $message.addClass('not-mine');
               $('.js-typing').addClass('hide');
             }
             $('.js-message-list').append($message);

@@ -49,13 +49,40 @@ body
   margin: 2rem 0
 
 .message
-  background-color: lighten($primary-color, 40%)
-  border: 1px solid $primary-color
-  margin: 0.5rem 0
-  padding: 1rem
+  margin-bottom: 0.5rem
+  padding: 0.75rem 0
+  .body
+    padding: 0.75rem
+    color: $white
+
   &.mine
-    background-color: lighten($secondary-color, 60%)
-    border: 1px solid $secondary-color
+    text-align: right
+    .body
+      background-color: $primary-color
+      &.message-tip
+        position: relative
+        &:before
+          content: ''
+          position: absolute
+          border-top: 14px solid transparent
+          border-bottom: 14px solid transparent
+          border-right: 14px solid $primary-color
+          top: 22px
+          right: 0
+
+  &.not-mine
+    .body
+      background-color: $secondary-color
+      &.message-tip
+        position: relative
+        &:before
+          content: ''
+          position: absolute
+          border-top: 14px solid transparent
+          border-bottom: 14px solid transparent
+          border-left: 14px solid $secondary-color
+          top: 22px
+          left: 0
 
 .input-group-label
   background-color: $secondary-color
@@ -66,4 +93,4 @@ body
   height: 5rem
 
 .form-container
-  margin: 1rem 0
+  margin: 2rem 0
