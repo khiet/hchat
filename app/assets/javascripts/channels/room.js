@@ -34,7 +34,6 @@ $(function() {
             $('.js-left-notification').removeClass('hide');
             break;
           case 'typing':
-            console.log(data['flag']);
             if (data['flag']) {
               $('.js-typing').removeClass('hide');
             } else {
