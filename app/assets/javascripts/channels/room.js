@@ -14,8 +14,11 @@ $(function() {
           case 'speak':
             var $message = $(data['message']);
             if (currentUserId == data['sender_id']) {
-              /* mark if message is mine or not */
+              // mark if message is mine or not
               $message = $message.addClass('mine');
+            } else {
+              $message = $message.addClass('not-mine');
+              $('.js-typing').addClass('hide');
             }
             $('.js-message-list').append($message);
             break;
@@ -28,6 +31,7 @@ $(function() {
             $('.js-logo').addClass('animated wobble');
             break;
           case 'left':
+            $('.js-typing').addClass('hide');
             var leaverName = data['leaverName']
             $('.js-joined-notification').addClass('hide');
             $('.js-left-notification').html('<b>' + leaverName + '</b>さんが退室しました。');
@@ -63,10 +67,6 @@ $(function() {
     });
 
     $('.js-chat-submit-button').on('click', function(e) {
-      /* clear typing since click on submit does not trigger keyup event
-       * to trigger typing(false) unlike keypress on input
-       */
-      App.room.typing(false);
       sendMessage();
 
       return e.preventDefault();

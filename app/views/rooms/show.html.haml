@@ -14,8 +14,9 @@
       .js-message-list.message-list
         = render @messages, user: current_user
 
-      .message.rounded.js-typing.typing.hide
-        = fa_icon('ellipsis-h', class: 'fa-pulse')
+      .message.js-typing.typing.hide{ class: 'not-mine' }
+        %span.body.rounded.message-tip
+          = fa_icon('ellipsis-h', class: 'fa-pulse')
 
       .form-container
         %form
@@ -27,4 +28,4 @@
               %button.button.secondary.js-chat-submit-button.chat-submit-button
                 = fa_icon('commenting', text: '発信')
 
-      = link_to '新規チャット', rooms_path, class: 'button'
+      = link_to fa_icon('refresh', text: '新規チャット'), rooms_path, class: 'button'
