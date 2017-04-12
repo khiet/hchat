@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
       available_room.update(available: false)
       partner = available_room.partner(current_user)
 
-      flash['notice'] = "チャットルームへ入室しました。あたたは<b>#{current_user.name}</b>で相手は<b>#{partner.name}さん</b>です。"
+      flash['notice'] = "チャットルームへ入室しました。<br>あたたは<b>#{current_user.name}</b>で相手は<b>#{partner.name}さん</b>です。"
       redirect_to room_path(available_room)
     else
       room = create_room
