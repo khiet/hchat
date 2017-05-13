@@ -35,6 +35,8 @@ $(function() {
             $('.js-left-notification').addClass('hide');
             $('.js-joined-notification').html('<b>' + joinerName + '</b>さんが入室しました。');
             $('.js-joined-notification').removeClass('hide');
+            $('.js-end-chat').removeClass('hide');
+            $('.js-new-chat').addClass('hide');
             $('.js-logo').addClass('animated wobble');
             break;
           case 'left':
@@ -43,8 +45,6 @@ $(function() {
             $('.js-joined-notification').addClass('hide');
             $('.js-left-notification').html('<b>' + leaverName + '</b>さんが退室しました。');
             $('.js-left-notification').removeClass('hide');
-            break;
-          case 'ended':
             $('.js-end-chat').addClass('hide');
             $('.js-new-chat').removeClass('hide');
             break;
@@ -59,9 +59,6 @@ $(function() {
         return this.perform('typing', {
           flag: flag
         });
-      },
-      ended: function() {
-        return this.perform('ended');
       }
     });
 
@@ -85,13 +82,6 @@ $(function() {
 
       var flag = ((trimedInput.length > 0) && (trimedInput != ''))
       App.room.typing(flag);
-    });
-
-    $('.js-end-chat').on('click', function(e) {
-      $('.js-end-chat').addClass('hide');
-      $('.js-new-chat').removeClass('hide');
-
-      App.room.ended();
     });
 
     var sendMessage = function() {

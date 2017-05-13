@@ -22,6 +22,13 @@ class RoomsController < ApplicationController
     @messages = Message.where(user_room_id: @room.user_room_ids).order(created_at: :asc)
   end
 
+  def ended
+    @room = current_user.rooms.find_by(id: params[:id])
+    redirect_to root_path and return unless @room
+
+    @messages = Message.where(user_room_id: @room.user_room_ids).order(created_at: :asc)
+  end
+
   private
 
   def available_room

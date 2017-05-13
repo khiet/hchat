@@ -28,6 +28,10 @@
               %button.button.secondary.js-chat-submit-button.chat-submit-button
                 = fa_icon('commenting', text: '発信')
 
-      %button.js-end-chat.button.gray
-        = fa_icon('times', text: 'チャット終了')
-      = link_to fa_icon('refresh', text: '新規チャット'), rooms_path, class: 'button hide js-new-chat'
+      - has_partner = (@room.users.count > 1)
+      - if has_partner
+        = link_to fa_icon('times', text: 'チャット終了'), ended_room_path(@room), class: 'js-end-chat button gray'
+        = link_to fa_icon('refresh', text: '新規チャット'), rooms_path, class: 'js-new-chat button hide'
+      - else
+        = link_to fa_icon('times', text: 'チャット終了'), ended_room_path(@room), class: 'js-end-chat button gray hide'
+        = link_to fa_icon('refresh', text: '新規チャット'), rooms_path, class: 'js-new-chat button'
