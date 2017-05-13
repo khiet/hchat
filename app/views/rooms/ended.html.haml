@@ -1,0 +1,15 @@
+%section
+  .row
+    .columns.medium-9.medium-centered.large-6.large-centered
+      .js-message-list.message-list
+        = render @messages, user: current_user
+
+      .form-container
+        %form
+          .input-group
+            %input.input-group-field.chat-text-area{ type: "text", disabled: true }
+            .input-group-button
+              %button.button.secondary.chat-submit-button{ disabled: true }
+                = fa_icon('commenting', text: '発信')
+
+      = link_to fa_icon('refresh', text: '新規チャット'), rooms_path, class: 'button'
