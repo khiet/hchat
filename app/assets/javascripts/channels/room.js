@@ -44,6 +44,10 @@ $(function() {
               $('.js-typing').addClass('hide');
             }
             break;
+          case 'ended':
+            $('.js-end-chat').addClass('hide');
+            $('.js-new-chat').removeClass('hide');
+            break;
         }
       },
       speak: function(message) {
@@ -55,6 +59,9 @@ $(function() {
         return this.perform('typing', {
           flag: flag
         });
+      },
+      ended: function() {
+        return this.perform('ended');
       }
     });
 
@@ -78,6 +85,13 @@ $(function() {
 
       var flag = ((trimedInput.length > 0) && (trimedInput != ''))
       App.room.typing(flag);
+    });
+
+    $('.js-end-chat').on('click', function(e) {
+      $('.js-end-chat').addClass('hide');
+      $('.js-new-chat').removeClass('hide');
+
+      App.room.ended();
     });
 
     var sendMessage = function() {

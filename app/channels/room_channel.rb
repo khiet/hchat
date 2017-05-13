@@ -40,6 +40,14 @@ class RoomChannel < ApplicationCable::Channel
     )
   end
 
+  def ended
+    ActionCable.server.broadcast(
+      "room_channel_#{user_room.room_id}_#{user_room.partner_id}",
+      action: 'ended',
+      enderName: browser_user.name
+    )
+  end
+
   private
 
   def room
