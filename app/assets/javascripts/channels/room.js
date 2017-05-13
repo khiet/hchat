@@ -22,6 +22,13 @@ $(function() {
             }
             $('.js-message-list').append($message);
             break;
+          case 'typing':
+            if (data['flag']) {
+              $('.js-typing').removeClass('hide');
+            } else {
+              $('.js-typing').addClass('hide');
+            }
+            break;
           case 'joined':
             var joinerName = data['joinerName']
             $('.js-flash-notice').addClass('hide');
@@ -36,13 +43,6 @@ $(function() {
             $('.js-joined-notification').addClass('hide');
             $('.js-left-notification').html('<b>' + leaverName + '</b>さんが退室しました。');
             $('.js-left-notification').removeClass('hide');
-            break;
-          case 'typing':
-            if (data['flag']) {
-              $('.js-typing').removeClass('hide');
-            } else {
-              $('.js-typing').addClass('hide');
-            }
             break;
           case 'ended':
             $('.js-end-chat').addClass('hide');
