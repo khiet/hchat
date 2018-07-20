@@ -8,10 +8,13 @@ Bundler.require(*Rails.groups)
 
 module Hchat
   class Application < Rails::Application
+    config.load_defaults 5.1
+
     config.generators do |g|
-      g.test_framework nil
-      g.assets  false
-      g.helper false
+      g.test_framework false
+      g.stylesheets    false
+      g.javascripts    false
+      g.helper         false
     end
   end
 end
