@@ -1,24 +1,68 @@
-# README
+<h3 align="center">
+  Two-way chat application using Rails Action Cable
+</h3>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project setup
+=======================
 
-Things you may want to cover:
+### Install brew from http://brew.sh/index.html
+This will install xcode command line tools, which can take some time (~20 minutes).
 
-* Ruby version
+### Install git
+```
+brew install git
+```
+You may want to setup a development environment like I do with [vim](https://github.com/khiet/vimfiles).
 
-* System dependencies
+### Install rbenv
+Follow the instruction [here](https://github.com/rbenv/rbenv#homebrew-on-macos)
 
-* Configuration
+### Install Ruby
+```
+# Ensure the version installed is the version set in .ruby-version
+rbenv install 2.5.1
+```
 
-* Database creation
 
-* Database initialization
+### Install bundler
+```
+gem install bundler
+```
 
-* How to run the test suite
+### Cloud setup
+##### Add SSH key to Github: https://help.github.com/articles/generating-an-ssh-key/
 
-* Services (job queues, cache servers, search engines, etc.)
+##### Setup Heroku
+```
+brew install heroku/brew/heroku
 
-* Deployment instructions
+heroku login
+heroku keys:add # add an SSH key
 
-* ...
+heroku git:remote -a sushimad-production -r production
+heroku git:remote -a sushimad-staging -r staging
+```
+
+### Setup DB
+```
+brew install postgres
+psql template1 -c '\du'
+# create a user called 'root' with no password
+createuser -a -d -U USER_DISPLAYED_ON_PREVIOUS_COMMAND -P root
+```
+
+### Install project software
+```
+brew install redis
+```
+
+### Project setup
+```
+bundle install
+```
+Create `.env` from `.env.example`
+
+### Initialize DB
+```
+bin/setup
+```
