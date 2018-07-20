@@ -1,9 +1,13 @@
 <h3 align="center">
   Two-way chat application using Rails Action Cable
+  <br />
+  <br />
+  <p align="center">
+    <img width="600" height="300" src="https://raw.githubusercontent.com/khiet/hchat/master/public/screenshot.jpg">
+  </p>
 </h3>
 
-Project setup
-=======================
+### Project setup
 
 ### Install brew from http://brew.sh/index.html
 This will install xcode command line tools, which can take some time (~20 minutes).
@@ -22,7 +26,6 @@ Follow the instruction [here](https://github.com/rbenv/rbenv#homebrew-on-macos)
 # Ensure the version installed is the version set in .ruby-version
 rbenv install 2.5.1
 ```
-
 
 ### Install bundler
 ```
